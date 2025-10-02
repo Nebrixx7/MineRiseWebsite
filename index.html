@@ -1,213 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MineRise Lifesteal Rules</title>
-  <style>
-    /* Import Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Rules | Lifesteal Minecraft & Discord</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        :root {
+            --primary: #ff6b35;
+            --secondary: #1a1a2e;
+            --accent: #00a8cc;
+            --light: #f8f9fa;
+            --dark: #16213e;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --discord: #5865f2;
+            --minecraft: #5cb85c;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg, #1e0036, #0d0d3b, #240046, #0f2027);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
+        body {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    /* --- Hero Section --- */
-    header {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
 
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4rem;
-      font-weight: 800;
-      text-shadow: 0 0 15px #00ffe7, 0 0 30px #00ffe7;
-    }
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
 
-    header p {
-      margin: 1rem 0 2rem;
-      font-size: 1.3rem;
-      color: #ccc;
-    }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    .join-btn {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(90deg, #00ffe7, #00aaff);
-      color: #000;
-      font-weight: 700;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      box-shadow: 0 0 20px #00ffe7, 0 0 40px #00aaff;
-      transition: 0.3s ease;
-    }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .join-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px #00ffe7, 0 0 60px #00aaff;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
 
-    /* --- Sections --- */
-    section {
-      max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
 
-    section h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #00ffe7;
-      text-shadow: 0 0 15px #00ffe7;
-    }
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50px;
+            color: var(--light);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    /* --- Rule Cards --- */
-    .rules-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
 
-    .rule-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 1.8rem;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 20px rgba(0,255,231,0.1);
-      transition: 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        .tab-btn.active {
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        }
 
-    .rule-card::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, #00ffe7, transparent 30%);
-      animation: rotate 8s linear infinite;
-      opacity: 0.2;
-    }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
 
-    @keyframes rotate {
-      0% { transform: rotate(0); }
-      100% { transform: rotate(360deg); }
-    }
+        .tab-content.active {
+            display: block;
+        }
 
-    .rule-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #00ffe7;
-      text-shadow: 0 0 10px #00ffe7;
-      position: relative;
-      z-index: 1;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .rule-card p {
-      font-size: 1rem;
-      color: #ddd;
-      position: relative;
-      z-index: 1;
-    }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
 
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0, 0, 0, 0.3);
-    }
-  </style>
+        .rule-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .rule-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .rule-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .discord-icon {
+            background: var(--discord);
+        }
+
+        .minecraft-icon {
+            background: var(--minecraft);
+        }
+
+        .rule-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .rule-desc {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .rule-list {
+            list-style-type: none;
+        }
+
+        .rule-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .rule-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rule-list i {
+            color: var(--primary);
+            margin-top: 0.3rem;
+            flex-shrink: 0;
+        }
+
+        .highlight {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .server-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .server-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .server-card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .server-card p {
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-gem"></i>
+            <h1>Server Rules</h1>
+        </div>
+        <p class="subtitle">Lifesteal Minecraft Server & Discord Community Guidelines</p>
+    </header>
 
-  <!-- Hero Section -->
-  <header>
-    <h1>MineRise Lifesteal</h1>
-    <p>The Official Rules for our Minecraft & Discord Server</p>
-    <a href="#" class="join-btn">Join: play.minerise.com</a>
-  </header>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="minecraft">
+                <i class="fas fa-cube"></i> Minecraft Rules
+            </button>
+            <button class="tab-btn" data-tab="discord">
+                <i class="fab fa-discord"></i> Discord Rules
+            </button>
+            <button class="tab-btn" data-tab="info">
+                <i class="fas fa-info-circle"></i> Server Info
+            </button>
+        </div>
 
-  <!-- Minecraft Rules -->
-  <section>
-    <h2>🟩 Minecraft Server Rules</h2>
-    <div class="rules-container">
-      <div class="rule-card">
-        <h3>1. Respect Gameplay</h3>
-        <p>Lifesteal is competitive — griefing, trapping, and PvP are allowed. Outsmart your opponents!</p>
-      </div>
-      <div class="rule-card">
-        <h3>2. No Cheating</h3>
-        <p>Clients, hacks, macros, or unfair modifications are not allowed. Play fair or get banned.</p>
-      </div>
-      <div class="rule-card">
-        <h3>3. No Exploits</h3>
-        <p>Dupes, glitches, or unintended exploits are forbidden.</p>
-      </div>
-      <div class="rule-card">
-        <h3>4. Respect Economy</h3>
-        <p>Scamming is allowed in-game, but real money trading is strictly forbidden.</p>
-      </div>
+        <div id="minecraft" class="tab-content active">
+            <div class="highlight">
+                <h3>Lifesteal Gameplay Note</h3>
+                <p>This is a <strong>Lifesteal server</strong> where griefing, trapping, and PvP are allowed as core gameplay mechanics. However, there are still rules to ensure fair play and a positive community experience.</p>
+            </div>
+
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon minecraft-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="rule-title">Lifesteal Mechanics</h3>
+                    </div>
+                    <p class="rule-desc">Rules regarding the core lifesteal gameplay</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>Losing all hearts results in a temporary ban until reset</span></li>
+                        <li><i class="fas fa-check"></i> <span>Griefing and raiding are allowed as part of gameplay</span></li>
+                        <li><i class="fas fa-check"></i> <span>Trapping players is permitted but must follow server guidelines</span></li>
+                        <li><i class="fas fa-check"></i> <span>Stealing items and resources is part of the game</span></li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon minecraft-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="rule-title">Fair Play</h3>
+                    </div>
+                    <p class="rule-desc">Ensuring a fair experience for all players</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>No hacked clients or unfair advantages</span></li>
+                        <li><i class="fas fa-check"></i> <span>No exploiting game bugs or glitches</span></li>
+                        <li><i class="fas fa-check"></i> <span>Respect the server performance - no lag machines</span></li>
+                        <li><i class="fas fa-check"></i> <span>No inappropriate skins or usernames</span></li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon minecraft-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="rule-title">Player Conduct</h3>
+                    </div>
+                    <p class="rule-desc">How to interact with other players</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>No excessive harassment or toxic behavior</span></li>
+                        <li><i class="fas fa-check"></i> <span>Respect all players regardless of skill level</span></li>
+                        <li><i class="fas fa-check"></i> <span>No hate speech, racism, or discrimination</span></li>
+                        <li><i class="fas fa-check"></i> <span>English only in public chats</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="discord" class="tab-content">
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon discord-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="rule-title">Chat Etiquette</h3>
+                    </div>
+                    <p class="rule-desc">Guidelines for communication in text channels</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>Be respectful to all members and staff</span></li>
+                        <li><i class="fas fa-check"></i> <span>No spamming, flooding, or excessive caps</span></li>
+                        <li><i class="fas fa-check"></i> <span>Keep conversations in appropriate channels</span></li>
+                        <li><i class="fas fa-check"></i> <span>No advertising without permission</span></li>
+                        <li><i class="fas fa-check"></i> <span>English only in public channels</span></li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon discord-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="rule-title">Voice Channels</h3>
+                    </div>
+                    <p class="rule-desc">Rules for voice communication</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>No earrape, soundboards, or excessive noise</span></li>
+                        <li><i class="fas fa-check"></i> <span>Respect others when they're speaking</span></li>
+                        <li><i class="fas fa-check"></i> <span>Move to appropriate channels for different activities</span></li>
+                        <li><i class="fas fa-check"></i> <span>Staff can move or disconnect you if necessary</span></li>
+                    </ul>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-icon discord-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3 class="rule-title">General Conduct</h3>
+                    </div>
+                    <p class="rule-desc">Overall behavior expectations</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check"></i> <span>No NSFW, offensive, or inappropriate content</span></li>
+                        <li><i class="fas fa-check"></i> <span>Respect staff decisions and follow their instructions</span></li>
+                        <li><i class="fas fa-check"></i> <span>No sharing personal information</span></li>
+                        <li><i class="fas fa-check"></i> <span>Use common sense and be kind to others</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="info" class="tab-content">
+            <div class="server-info">
+                <div class="server-card">
+                    <h3><i class="fas fa-server"></i> Server IP</h3>
+                    <p>play.lifesteal-mc.net</p>
+                </div>
+                <div class="server-card">
+                    <h3><i class="fas fa-plug"></i> Version</h3>
+                    <p>1.19.2 - 1.20.x</p>
+                </div>
+                <div class="server-card">
+                    <h3><i class="fas fa-user-shield"></i> Staff Applications</h3>
+                    <p>Open in #staff-apps on Discord</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>About Our Lifesteal Server</h3>
+                <p>Our server features a unique lifesteal experience where players can steal hearts from others through PvP. With custom plugins, seasonal resets, and an active community, we offer a challenging and engaging Minecraft experience. Join our Discord to stay updated on events, updates, and community activities!</p>
+            </div>
+
+            <div class="server-info">
+                <div class="server-card">
+                    <h3><i class="fab fa-discord"></i> Discord</h3>
+                    <p>Join our community: discord.gg/lifesteal</p>
+                </div>
+                <div class="server-card">
+                    <h3><i class="fas fa-store"></i> Store</h3>
+                    <p>Support us: store.lifesteal-mc.net</p>
+                </div>
+                <div class="server-card">
+                    <h3><i class="fas fa-question-circle"></i> Support</h3>
+                    <p>Get help in #support on Discord</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Discord Rules -->
-  <section>
-    <h2>💬 Discord Server Rules</h2>
-    <div class="rules-container">
-      <div class="rule-card">
-        <h3>1. Respect Staff</h3>
-        <p>No impersonation or disrespect towards staff members.</p>
-      </div>
-      <div class="rule-card">
-        <h3>2. No Hate Speech</h3>
-        <p>Racism, discrimination, and harassment are not tolerated.</p>
-      </div>
-      <div class="rule-card">
-        <h3>3. Keep It Safe</h3>
-        <p>No NSFW content, malicious links, or harmful material.</p>
-      </div>
-      <div class="rule-card">
-        <h3>4. English Only</h3>
-        <p>All chats should remain in English for clear communication.</p>
-      </div>
-    </div>
-  </section>
+    <footer>
+        <p>© 2023 Lifesteal Minecraft Server | All Rights Reserved</p>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 MineRise Lifesteal | All Rights Reserved</p>
-  </footer>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    btn.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
