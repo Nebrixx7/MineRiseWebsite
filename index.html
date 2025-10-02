@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineRise Rules</title>
+  <style>
+    /* --- Fonts & Base Styles --- */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* --- Header / Hero --- */
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #fff;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    /* --- Section --- */
+    section {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #00f2fe;
+    }
+
+    /* --- Rules Cards --- */
+    .rules-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .rule-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 20px;
+      transition: 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .rule-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .rule-card h3 {
+      color: #4facfe;
+      margin-bottom: 0.8rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <h1>MineRise Lifesteal</h1>
+    <p>Official Rules for our Minecraft & Discord Server</p>
+  </header>
+
+  <!-- Minecraft Rules -->
+  <section>
+    <h2>🟩 Minecraft Server Rules</h2>
+    <div class="rules-container">
+      <div class="rule-card">
+        <h3>1. Respect Gameplay</h3>
+        <p>Lifesteal is competitive — griefing, trapping, and PvP are allowed. Use your skills wisely!</p>
+      </div>
+      <div class="rule-card">
+        <h3>2. No Cheating</h3>
+        <p>Clients, hacks, macros, or unfair modifications are not allowed. Play fair or face a ban.</p>
+      </div>
+      <div class="rule-card">
+        <h3>3. No Exploits</h3>
+        <p>Dupes, glitches, and unintended exploits are strictly prohibited.</p>
+      </div>
+      <div class="rule-card">
+        <h3>4. Respect Economy</h3>
+        <p>Scamming is allowed in-game, but using real money or outside trades is forbidden.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discord Rules -->
+  <section>
+    <h2>💬 Discord Server Rules</h2>
+    <div class="rules-container">
+      <div class="rule-card">
+        <h3>1. Respect Staff</h3>
+        <p>No impersonation or disrespect towards staff members.</p>
+      </div>
+      <div class="rule-card">
+        <h3>2. No Hate Speech</h3>
+        <p>Racism, discrimination, and harassment are not tolerated.</p>
+      </div>
+      <div class="rule-card">
+        <h3>3. Keep It Safe</h3>
+        <p>No NSFW content, malicious links, or harmful material.</p>
+      </div>
+      <div class="rule-card">
+        <h3>4. English Only</h3>
+        <p>All chats should remain in English for clear communication.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MineRise Lifesteal | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
