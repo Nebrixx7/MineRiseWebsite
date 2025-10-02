@@ -3,94 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MineRise Rules</title>
+  <title>MineRise Lifesteal Rules</title>
   <style>
-    /* --- Fonts & Base Styles --- */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    /* Import Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap');
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+      font-family: 'Poppins', sans-serif;
       color: #fff;
-      line-height: 1.6;
+      background: linear-gradient(-45deg, #1e0036, #0d0d3b, #240046, #0f2027);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
     }
 
-    /* --- Header / Hero --- */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- Hero Section --- */
     header {
       text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: #fff;
-      border-bottom-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      padding: 5rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
 
     header h1 {
-      font-size: 3rem;
-      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      text-shadow: 0 0 15px #00ffe7, 0 0 30px #00ffe7;
     }
 
     header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-top: 0.5rem;
+      margin: 1rem 0 2rem;
+      font-size: 1.3rem;
+      color: #ccc;
     }
 
-    /* --- Section --- */
+    .join-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(90deg, #00ffe7, #00aaff);
+      color: #000;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px #00ffe7, 0 0 40px #00aaff;
+      transition: 0.3s ease;
+    }
+
+    .join-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffe7, 0 0 60px #00aaff;
+    }
+
+    /* --- Sections --- */
     section {
       max-width: 1100px;
-      margin: 2rem auto;
+      margin: 3rem auto;
       padding: 0 1rem;
     }
 
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
       text-align: center;
-      color: #00f2fe;
+      margin-bottom: 2rem;
+      color: #00ffe7;
+      text-shadow: 0 0 15px #00ffe7;
     }
 
-    /* --- Rules Cards --- */
+    /* --- Rule Cards --- */
     .rules-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .rule-card {
       background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
       border-radius: 20px;
+      padding: 1.8rem;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0,255,231,0.1);
       transition: 0.3s ease;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
     }
 
-    .rule-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.1);
+    .rule-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, #00ffe7, transparent 30%);
+      animation: rotate 8s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
     }
 
     .rule-card h3 {
-      color: #4facfe;
-      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rule-card p {
+      font-size: 1rem;
+      color: #ddd;
+      position: relative;
+      z-index: 1;
     }
 
     /* --- Footer --- */
     footer {
       text-align: center;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.3);
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -99,7 +154,8 @@
   <!-- Hero Section -->
   <header>
     <h1>MineRise Lifesteal</h1>
-    <p>Official Rules for our Minecraft & Discord Server</p>
+    <p>The Official Rules for our Minecraft & Discord Server</p>
+    <a href="#" class="join-btn">Join: play.minerise.com</a>
   </header>
 
   <!-- Minecraft Rules -->
@@ -108,19 +164,19 @@
     <div class="rules-container">
       <div class="rule-card">
         <h3>1. Respect Gameplay</h3>
-        <p>Lifesteal is competitive — griefing, trapping, and PvP are allowed. Use your skills wisely!</p>
+        <p>Lifesteal is competitive — griefing, trapping, and PvP are allowed. Outsmart your opponents!</p>
       </div>
       <div class="rule-card">
         <h3>2. No Cheating</h3>
-        <p>Clients, hacks, macros, or unfair modifications are not allowed. Play fair or face a ban.</p>
+        <p>Clients, hacks, macros, or unfair modifications are not allowed. Play fair or get banned.</p>
       </div>
       <div class="rule-card">
         <h3>3. No Exploits</h3>
-        <p>Dupes, glitches, and unintended exploits are strictly prohibited.</p>
+        <p>Dupes, glitches, or unintended exploits are forbidden.</p>
       </div>
       <div class="rule-card">
         <h3>4. Respect Economy</h3>
-        <p>Scamming is allowed in-game, but using real money or outside trades is forbidden.</p>
+        <p>Scamming is allowed in-game, but real money trading is strictly forbidden.</p>
       </div>
     </div>
   </section>
